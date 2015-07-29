@@ -4,11 +4,11 @@ import hibernateAll.sesion.manager.SesionManager;
 
 import java.util.List;
 
-import org.hibernate.Session;
+
 
 import tablas_Clases.Departments;
 import tablas_Clases.Employees;
-
+import org.hibernate.Session;
 public class DepartamentoHibernateDAO {
 
 	

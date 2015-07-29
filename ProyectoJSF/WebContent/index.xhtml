@@ -10,10 +10,17 @@
     </h:head>
     <h:body>
     	<h3>Bienvenido</h3>
+    	
     	<h:form>
     	   <h:inputText value="#{holaMundo.nombre}"></h:inputText>
     	   <h:commandButton value="Welcome Me" action="wellcome"></h:commandButton>
     	</h:form>
+    	
+    	<h:form>
+    	   <h:inputText value="#{holaMundo.numero}"></h:inputText>
+    	   <h:commandButton value="Incrementa numero" action="#{holaMundo.mostrar}"></h:commandButton>
+    	</h:form>
+    	
     	<!-- 
     	<h:form>
     	   <h:commandButton value="Dame empleado" action="empleado"></h:commandButton>

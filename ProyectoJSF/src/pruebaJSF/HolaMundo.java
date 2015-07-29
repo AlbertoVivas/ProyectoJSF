@@ -10,7 +10,15 @@ public class HolaMundo {
 	
 
 	private String nombre;
+	private int numero;
 	
+	public int getNumero() {
+		return numero;
+	}
+
+	public void setNumero(int numero) {
+		this.numero = numero;
+	}
 	public HolaMundo()
 	{
 		nombre="Ignacio";
@@ -28,6 +36,11 @@ public class HolaMundo {
 	public int longuitud()
 	{
 		return this.nombre.length();
+	}
+	
+	public void mostrar(){
+		this.numero++;
+	
 	}
 
 }
