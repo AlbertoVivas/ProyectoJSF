@@ -3,20 +3,52 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"    
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
- 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+	<f:viewParam name="dpto" value="{departamentoBean.id}"/>
+</f:metadata>
     <h:head>
     	<title>JSF 2.0 Hello World</title>
     </h:head>
     <h:body bgcolor="white">
     	<h3>Mostrar Departamento</h3>
+    	<div>
     	<h:form> 
-    		<h:selectOneMenu label="DepartamentoBean">
+    		<h:selectOneMenu label="DepartamentoBean" value="#{departamentoBean.id}">
     			<f:selectItems value="#{departamentoBean.lista}" var="d" itemValue ="#{d.departmentId}" itemLabel ="#{d.departmentName}">
-    		
     			</f:selectItems>
     		</h:selectOneMenu>
+    		<!--  <h:commandButton value="Obtener empleados" action="#{departamentoBean.recuperarEmpleadosPorDepartamento}" />-->
+    		<h:commandButton value="Obtener empleados" action="empleados? faces-redirect=true &amp; includeViewParams=true" />
     	</h:form> 
+    	</div>
+    	
+    	<div>
+    	<h3>Empleados por departamentos</h3>
+    	<table border="2" bgcolor="white">
+    		<tr bgcolor="cyan">
+    		<td>ID</td>
+    		<td><b>Nombre</b></td>
+    		<td><b>Apellido</b></td>
+    		<td><b>Email</b></td>
+    		<td><b>Salario</b></td>
+    		</tr>
+    		
+    		<ui:repeat var="e" value="#{departamentoBean.listaEmpleados}">
+	    		<tr>
+		    		<td>#{e.employeeId}</td>
+		    		<td>#{e.firstName}</td>
+		    		<td>#{e.lastName}</td>
+		    		<td>#{e.email}</td>
+		    		<td>#{e.salary}</td>
+	    		</tr>
+    		</ui:repeat>
+    	</table>
+    	<h:outputText rendered="#{empty departamentoBean.listaEmpleados}" value="No hay empleados en este departamento"></h:outputText>
+    	</div>
+    	<div>
     	<h:form><h:commandButton value="Volver" action="index"></h:commandButton></h:form>
+    	</div>
     </h:body>
 </html>

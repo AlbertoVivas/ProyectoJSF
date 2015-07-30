@@ -2,16 +2,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"    
-      xmlns:h="http://java.sun.com/jsf/html">
- 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<f:metadata>
+<f:viewParam name="dpto" value="#{empleado.id}"/>
+<f:event listener="#{empleado.init}" type="preRenderView"/>
+</f:metadata> 
     <h:head>
     	<title>JSF 2.0 Hello World</title>
     </h:head>
     <h:body bgcolor="white">
     	<h3>Solicitar empleado por id</h3>
     	<h:form>
-    	<h:inputText value="#{EmpleadoBean.id}"></h:inputText>
-    	</h:form>
+    	<h:inputText value="#{empleadoBean.id}"></h:inputText>
+    	<h:commandButton value="BuscarEmpleado" action="#{empleadoBean.buscarEmpleado}"></h:commandButton>
+    	</h:form> 
+    	
+    	<div>
+    	<table border="2" bgcolor="white" >
+    		<tr bgcolor="cyan">
+    		<td>ID</td>
+    		<td><b>Nombre</b></td>
+    		<td><b>Apellido</b></td>
+    		<td><b>Email</b></td>
+    		<td><b>Salario</b></td>
+    		
+    		</tr>
+    		<tr>
+    		<td>#{empleadoBean.empleado.employeeId}</td>
+    		<td>#{empleadoBean.empleado.firstName}</td>
+    		<td>#{empleadoBean.empleado.lastName}</td>
+    		<td>#{empleadoBean.empleado.email}</td>
+    		<td>#{empleadoBean.empleado.salary}</td>
+    		
+    		</tr>
+    		
+    	
+    	</table>
+    	</div>
+    	
+    	
+    		
+    	
     	<h:form><h:commandButton value="Volver" action="index"></h:commandButton></h:form>
     	
     </h:body>
