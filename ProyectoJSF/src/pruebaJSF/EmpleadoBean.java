@@ -3,16 +3,13 @@ package pruebaJSF;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.xml.ws.Action;
 
 import hibernateAll.empleadoHibernateDAO.EmpleadoHibernateDAO;
 import interfaces.interfaceRecuperable.Recuperable;
 import servicios.Empleados.EmployeesServices;
 import servicios.departamentos.DepartmentsServices;
-import tablas_Clases.Departments;
 import tablas_Clases.Employees;
 
 @ManagedBean
@@ -40,11 +37,19 @@ public class EmpleadoBean {
 	}
 
 	//@Action
-	public void buscarEmpleado() throws ClassNotFoundException, SQLException{
+	public void buscarEmpleado() {
 		EmployeesServices es = new EmployeesServices();
 		Recuperable objetoDao = new EmpleadoHibernateDAO();
 		es.setRecuperable(objetoDao);
-		this.empleado = (Employees) es.leerEmpleadoServices(this.id);	
+		try {
+			this.empleado = (Employees) es.leerEmpleadoServices(this.id);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	}
 
 	public EmpleadoBean(List<Employees> lista, int id, Employees empleado) {
